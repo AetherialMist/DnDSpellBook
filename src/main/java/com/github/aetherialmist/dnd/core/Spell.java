@@ -22,9 +22,11 @@ public interface Spell {
         ABJURATION, ENCHANTMENT, CONJURATION, EVOCATION, DIVINATION, ILLUSION, NECROMANCY, TRANSMUTATION
     }
 
-    enum Components {
+    enum Component {
         VERBAL, SOMATIC, MATERIAL
     }
+
+    String getName();
 
     int getLevel();
     MagicSchool getSchool();
@@ -43,7 +45,7 @@ public interface Spell {
     int getRange();
     RangeUnit getRangeUnit();
 
-    Components[] getComponents();
+    Component[] getComponents();
 
     boolean isRitual();
 

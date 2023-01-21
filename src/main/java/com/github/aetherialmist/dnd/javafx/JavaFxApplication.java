@@ -1,7 +1,5 @@
 package com.github.aetherialmist.dnd.javafx;
 
-import com.github.aetherialmist.dnd.h2.Database;
-import com.github.aetherialmist.dnd.h2.WebServer;
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.application.Platform;
@@ -17,18 +15,10 @@ import org.springframework.context.support.GenericApplicationContext;
 @Slf4j
 public class JavaFxApplication extends Application {
 
-//    public static void main(String[] args) {
-//        log.info("Starting Application");
-//        launch();
-//    }
-
     private ConfigurableApplicationContext context;
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
-
-    private Database database;
-    private WebServer webServer;
 
     @Override
     public void init() {
@@ -42,10 +32,6 @@ public class JavaFxApplication extends Application {
             .sources(SpringRunner.class)
             .initializers(initializer)
             .run(getParameters().getRaw().toArray(new String[0]));
-
-        database = new Database();
-        webServer = new WebServer();
-        webServer.start();
     }
 
     @Override
@@ -62,23 +48,13 @@ public class JavaFxApplication extends Application {
             stage.show();
         } catch (Exception e) {
             log.error("Failed to start application.", e);
-            shutdownDatabase();
         }
     }
 
     @Override
-    public void stop() throws Exception {
+    public void stop() {
         this.context.close();
-        shutdownDatabase();
-        webServer.stop();
         Platform.exit();
-    }
-
-    private void shutdownDatabase() {
-        log.info("Shutting down database");
-        if (database != null) {
-            database.close();
-        }
     }
 
 }

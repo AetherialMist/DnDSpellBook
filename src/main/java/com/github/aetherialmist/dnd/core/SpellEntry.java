@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 public class SpellEntry implements Spell {
 
+    private String name;
     private int level;
     private MagicSchool school;
     private boolean ritual;
@@ -18,7 +19,7 @@ public class SpellEntry implements Spell {
     private String description;
     private int range;
     private RangeUnit rangeUnit;
-    private Components[] components;
+    private Component[] components;
     private String materialCost;
 
 }
