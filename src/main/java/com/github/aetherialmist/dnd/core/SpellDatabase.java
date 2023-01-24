@@ -1,5 +1,7 @@
 package com.github.aetherialmist.dnd.core;
 
+import com.github.aetherialmist.dnd.core.spells.Spell;
+
 public interface SpellDatabase {
 
     /**

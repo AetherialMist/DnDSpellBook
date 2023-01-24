@@ -1,4 +1,4 @@
-package com.github.aetherialmist.dnd.javafx;
+package com.github.aetherialmist.dnd.spring;
 
 import javafx.stage.Stage;
 import org.springframework.context.ApplicationEvent;

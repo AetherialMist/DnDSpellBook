@@ -1,4 +1,4 @@
-package com.github.aetherialmist.dnd.javafx;
+package com.github.aetherialmist.dnd.h2;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

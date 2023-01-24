@@ -1,7 +1,7 @@
-package com.github.aetherialmist.dnd.javafx;
+package com.github.aetherialmist.dnd.spring;
 
+import com.github.aetherialmist.dnd.spring.FxProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration

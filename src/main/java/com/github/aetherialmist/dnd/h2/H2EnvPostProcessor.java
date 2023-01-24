@@ -1,4 +1,4 @@
-package com.github.aetherialmist.dnd.javafx;
+package com.github.aetherialmist.dnd.h2;
 
 import org.apache.commons.logging.Log;
 import org.springframework.boot.SpringApplication;

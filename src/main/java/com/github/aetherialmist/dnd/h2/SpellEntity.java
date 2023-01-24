@@ -1,60 +1,71 @@
 package com.github.aetherialmist.dnd.h2;
 
-import com.github.aetherialmist.dnd.core.HigherLevel;
-import com.github.aetherialmist.dnd.core.MaterialCost;
-import com.github.aetherialmist.dnd.core.Spell;
+import com.github.aetherialmist.dnd.core.spells.*;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "SPELLS")
 @Getter
-public class SpellEntity implements HigherLevel, MaterialCost, Spell, Serializable {
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class SpellEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-
     private String name;
-
     private int level;
-    private MagicSchool school;
     private boolean ritual;
-
-    private CastingTime castingTime;
-    private TimeUnit castingTimeUnit;
-
-    private DurationType duration;
-    private int durationLength;
-    private TimeUnit durationUnit;
-
-    private int range;
-    private RangeUnit rangeUnit;
-
-    private String description;
-    private String atHigherLevel;
-
-    private String materialCost;
-
     private boolean verbal;
     private boolean somatic;
     private boolean material;
+    private String materialCost;
+    private int schoolId;
+    private int castingTimeId;
+    private int durationId;
+    private int rangeId;
+    private String description;
+    private String atHigherLevel;
 
-    public Component[] getComponents() {
-        List<Component> types = new ArrayList<>();
-        if (verbal) {
-            types.add(Component.VERBAL);
-        }
-        if (somatic) {
-            types.add(Component.SOMATIC);
-        }
-        if (material) {
-            types.add(Component.MATERIAL);
-        }
-        return types.toArray(new Component[0]);
+    public static SpellEntity fromSpell(Spell spell) {
+        return SpellEntity.builder()
+            .name(spell.getName())
+            .level(spell.getLevel())
+            .ritual(spell.isRitual())
+            .verbal(spell.isVerbal())
+            .somatic(spell.isSomatic())
+            .material(spell.isMaterial())
+            .materialCost(spell.getMaterialCost())
+            .schoolId(spell.getSpellSchoolId())
+            .castingTimeId(spell.getSpellCastingTimeId())
+            .durationId(spell.getSpellDurationId())
+            .rangeId(spell.getSpellRangeId())
+            .description(spell.getDescription())
+            .atHigherLevel(spell.getAtHigherLevel())
+            .build();
     }
+
+    public Spell asSpell() {
+        return Spell.builder()
+            .name(name)
+            .level(level)
+            .ritual(ritual)
+            .verbal(verbal)
+            .somatic(somatic)
+            .material(material)
+            .materialCost(materialCost)
+            .spellSchoolId(schoolId)
+            .spellCastingTimeId(castingTimeId)
+            .spellDurationId(durationId)
+            .spellRangeId(rangeId)
+            .description(description)
+            .atHigherLevel(atHigherLevel)
+            .build();
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.github.aetherialmist.dnd.javafx;
+package com.github.aetherialmist.dnd.spring;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
