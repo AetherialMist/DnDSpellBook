@@ -1,6 +1,5 @@
-## Notes
+# D&D Spell Book
 
-* Make more Tables!
-  * SpellId + ClassId
-  * SpellId + RangeId
-  * SpellId + ConcentrationId
+## Goal
+
+An application to store a database of D&D Spells which can be queried, and to create character spell lists (books).
